@@ -2,6 +2,7 @@ from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
+
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
@@ -11,16 +12,16 @@ from .utils import Calendar
 from .forms import EventForm
 
 def index(request):
-    return HttpResponse('hello')
+    return HttpResponse('404 ERROR')
 
 class CalendarView(generic.ListView):
-    model = Event
+    model = Reader
     template_name = 'cal/calendar.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         d = get_date(self.request.GET.get('month', None))
-        cal = Calendar(d.year, d.month)
+        cal = Calendar(d.year, d.month, )
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
@@ -47,11 +48,11 @@ def next_month(d):
     return month
 
 def event(request, event_id=None):
-    instance = Event()
+    instance = Reader()
     if event_id:
-        instance = get_object_or_404(Event, pk=event_id)
+        instance = get_object_or_404(Reader, pk=event_id)
     else:
-        instance = Event()
+        instance = Reader()
 
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
