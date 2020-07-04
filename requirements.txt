@@ -47,7 +47,6 @@ pydantic==1.4
 PyDispatcher==2.0.5
 PyHamcrest==2.0.0
 pyOpenSSL==19.1.0
-pypiwin32==223
 python-dateutil==1.5
 pytz==2019.3
 pywin32==227
