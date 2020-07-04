@@ -25,7 +25,7 @@ SECRET_KEY = '4y2^moidr-z*rj794*e4_*(i_yu77mr*%9l*b3+p$htz454efh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '094419cb83d5.ngrok.io']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -124,6 +124,7 @@ USE_TZ = False
 STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
 # URL that your STATIC files will be accessible through the browser.
 STATIC_URL = '/static/'
+
 import  dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
